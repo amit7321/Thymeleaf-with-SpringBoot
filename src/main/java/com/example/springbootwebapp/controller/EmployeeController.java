@@ -21,7 +21,7 @@ public class EmployeeController {
     {
         ModelAndView mav = new ModelAndView("list-employees");
         List <Employee> list = eRepo.findAll() ;
-        mav.addObject("employee", list) ;
+        mav.addObject("employees", list) ;
 
         return mav ;
     }
