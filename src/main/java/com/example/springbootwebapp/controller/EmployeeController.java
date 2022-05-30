@@ -5,9 +5,11 @@ import com.example.springbootwebapp.repository.EmployeeRepository;
 import jdk.dynalink.linker.LinkerServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.xml.transform.sax.SAXResult;
 import java.util.List;
 
 @Controller
@@ -16,13 +18,20 @@ public class EmployeeController {
     @Autowired
     private EmployeeRepository eRepo ;
 
-    @GetMapping("/showEmployees")
-    public ModelAndView showEmployees()
+    @GetMapping({"/showEmployees", "/", "/list"})
+    public String showEmployees(Model model)
     {
-        ModelAndView mav = new ModelAndView("list-employees");
         List <Employee> list = eRepo.findAll() ;
-        mav.addObject("employees", list) ;
-
-        return mav ;
+        model.addAttribute("employees", list) ;
+        return "list-employee" ;
     }
+
+    @GetMapping("/addEmployeeForm")
+    public String addEmployeeForm(Model model)
+    {
+        Employee employee = new Employee();
+        model.addAttribute("employees", employee);
+        return "add-employee-form" ;
+    }
+
 }
