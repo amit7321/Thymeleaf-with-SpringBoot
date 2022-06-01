@@ -17,9 +17,10 @@
   <table class="table table-bordered">
     <thead>
     <tr>
-      <th>Name</th>
-      <th>Email</th>
-      <th>Department</th>
+      <th> Name </th>
+      <th> Email </th>
+      <th> Department </th>
+      <th> Actions </th>
     </tr>
     </thead>
 
@@ -27,7 +28,12 @@
     <tr th:each="employee: ${employees}">
       <td th:text="${employee.name}"></td>
       <td th:text="${employee.email}"></td>
-      <td th:text="${employee.Department}"></td>
+      <td th:text="${employee.department}"></td>
+      <td>
+        <a th:href="@{/showUpdateForm(employeeId=${employee.id})}" class="btn btn-info"> Update </a>
+        <a th:href="@{/showDeleteForm(employeeId=${employee.id})}" class="btn btn-danger ml-2"> Delete </a>
+      </td>
+
     </tr>
     </tbody>
 
