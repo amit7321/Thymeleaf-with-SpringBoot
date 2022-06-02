@@ -53,4 +53,13 @@ public class EmployeeController {
 
         return model ;
     }
+
+    @GetMapping("/showDeleteForm")
+    public String deleteEmployee(@RequestParam Long employeeId)
+    {
+        eRepo.deleteById(employeeId);
+        return "redirect:/list" ;
+    }
+
+
 }
